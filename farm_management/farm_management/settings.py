@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'farm_management',
     'farms',
     'rest_framework',
+    'rest_framework_simplejwt',
 ]
 
 MIDDLEWARE = [
@@ -102,6 +103,17 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+REST_FRAMEWORK = {
+    # ... other settings
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ]
+}
+
+SIMPLE_JWT = {
+    'AUTH_HEADER_NAME': 'HTTP_AUTHORIZATION',
+    'AUTH_TOKEN_CLASSES': ['rest_framework_simplejwt.tokens.AccessToken'],
+}
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
