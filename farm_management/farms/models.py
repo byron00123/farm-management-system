@@ -39,3 +39,17 @@ class MarketPrice(models.Model):
     product = models.CharField(max_length=255)  # Product name (e.g., corn, milk)
     unit = models.CharField(max_length=255, blank=True)  # Unit of measurement (optional)
     price = models.DecimalField(max_digits=10, decimal_places=2)
+
+# New model for Task Scheduling
+class Task(models.Model):
+    farm = models.ForeignKey(Farm, on_delete=models.CASCADE)  # Link to farm
+    name = models.CharField(max_length=255)  # Task name
+    description = models.TextField(blank=True)  # Optional: Task description
+    start_date = models.DateField()  # Task start date
+    due_date = models.DateField()  # Task due date
+    priority = models.CharField(max_length=255, choices=[  # Optional: Priority level
+        ('HIGH', 'High'),
+        ('MEDIUM', 'Medium'),
+        ('LOW', 'Low'),
+    ], blank=True, null=True)
+    completed = models.BooleanField(default=False)  # Track task completion status
